@@ -673,6 +673,65 @@ align-items: center;
   display: flex;
   gap: 1.5rem;
 }
+/* == {{ FOOTER SECTION }} == */
+.footer {
+  padding: 4rem 0;
+  background-color: var(--primary-color);
+}
+.footer__container {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.footer-logo-info {
+  max-width: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.footer__logo {
+  max-width: fit-content;
+}
+.footer_info {
+  color: var(--white-60);
+}
+.footer-list--wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.footer-list__title {
+  color: var(--white);
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.list-footer__link {
+  text-transform: capitalize;
+  color: var(--white-60);
+  transition: var(--transition);
+}
+.list-footer__link:hover{
+  color: var(--red);
+}
+.container{
+  border: none;
+}
+.footer__container-bottom{
+  border-top: 1px solid var(--white-60);
+  padding-top: 1.5rem;
+}
+
+.footer__container-bottom p{
+  text-align: center;
+  font-weight: 300;
+  color: var(--white-60);
+}
 /* ANIMATIONS */
 @keyframes fadeInUp {
   from {
