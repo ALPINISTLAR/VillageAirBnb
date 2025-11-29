@@ -533,6 +533,68 @@ button{
 .featured-stays-card_price span{
   text-transform: lowercase;
 }
+/* ==|| WHY CHOOSE SECTION ||== */
+.why-choose-card {
+  border-left: 5px solid var(--gold);
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 0.6rem;
+  transition: var(--transition);
+}
+.why-choose-card:hover{
+  transform: translateX(5px);
+}
+.why-choose-card_title {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.why-choose-card_title i{
+  font-size: 2rem;
+  margin-right: 0.5rem;
+  color: var(--gold);
+}
+.why-choose-card_info {
+  max-width: 18.75rem;
+}
+
+/* ##[ EQUIPMENT SECTION ]## */
+.equipment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.equipment-grid{
+  margin-bottom: 2rem;
+}
+.equipment-card {
+  max-width: 22rem;
+  padding: 1.5rem;
+  border-radius: 0.6rem;
+  transition: var(--transition);
+}
+.equipment-card:hover{
+  box-shadow: var(--shadow);
+}
+.equipment-card_img {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+.equipment-card_title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--title-color);
+  margin-bottom: 0.3rem;
+}
+.equipment-card_info {
+  text-align: center;
+  color: var(--text-color);
+}
 /* ANIMATIONS */
 @keyframes fadeInUp {
   from {
