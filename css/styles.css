@@ -533,3 +533,14 @@ button{
 .featured-stays-card_price span{
   text-transform: lowercase;
 }
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
