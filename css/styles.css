@@ -1,3 +1,22 @@
+:root{
+  --primary-color: #6D635F;
+  --red: #CA005D;
+  --red-75: rgb(202, 0, 93, 0.75);
+  --blue: #2563EB;
+  --blue-70: rgb(37, 99, 235, 0.7);
+  --gold: #EFB31F;
+  --red-50: rgb(202, 0, 93, 0.5);
+  --title-color: #000;
+  --text-color: #333;
+  --text-color-50: rgb(51, 51, 51, 0.5);
+  --white: #fff;
+  --white-60: rgb(255, 255, 255, 0.6);
+  --light-bg: #f9f9f9;
+  --card-bg: rgba(217, 217, 217, 0.3);
+  --transition: all 0.3s ease;
+  --gradient: linear-gradient(135deg, #EFB31F 0%, #6D635F 100%);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
 /* ** GLOBAL STYLES ** */
 html
 {
