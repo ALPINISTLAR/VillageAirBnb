@@ -34,10 +34,17 @@ html
   list-style: none;
   text-decoration: none;
 }
-img
-{
+img{
+  display: flex;
   max-width: 100%;
   height: auto;
+}
+h1,h2,h3,h4,p{
+  margin: 0;
+}
+*:focus{
+  outline: 3px dotted var(--red);
+  outline-offset: 3px;
 }
 /* ----------------- */
 /* ===== body ====== */
@@ -47,14 +54,12 @@ body
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 0;
-  margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
-  font-family: Arial, sans-serif;
+  font-family: Poppins, Arial, sans-serif;
   letter-spacing: 0.5px;
-  background-color: #fff;
-  color: #222;
+  background-color: var(--light-bg);
+  color: var(--text-color);
 }
 /* * * / AUTOFILL STYLES \ * * */
 input:-webkit-autofill,
@@ -89,11 +94,8 @@ select:-webkit-autofill:focus {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 25px;
+  border: 3px solid red;
 }
-
-
-
-
 /* ** MAIN CONTENT ** */
 .main-content
 {
