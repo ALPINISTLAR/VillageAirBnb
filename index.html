@@ -46,6 +46,71 @@
         </nav>
       </div>
     </header>
+    <!-- HERO -->
+    <div id="hero" class="hero container">
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title">Experience Authentic Uzbek Village Life</h1>
+        <p class="hero-description">Stay with welcoming local families in the beautiful villages of Uzbekistan</p>
+      </div>
+      <!-- Search Form Section -->
+      <section class="search-form-section">
+        <div class="search-form-wrapper">
+          <form id="main-search-form" action="/search" method="get" class="search-form">
+
+            <!-- Location -->
+            <div class="form-group location-group">
+              <i class="fa-solid fa-location-dot"></i>
+              <input type="text" name="location" id="location" placeholder="Where do you want to go?" autocomplete="off">
+            </div>
+
+            <!-- Check In -->
+            <div class="form-group check-in-group">
+              <input
+              type="text"
+              id="checkIn"
+              class="custom-date-input"
+              placeholder="Check in"
+              readonly
+              >
+              <i class="fa-regular fa-calendar date-icon"></i>
+            </div>
+
+            <!-- Check Out -->
+            <div class="form-group check-out-group">
+              <input
+              type="text"
+              id="checkOut"
+              class="custom-date-input"
+              placeholder="Check out"
+              readonly
+              >
+              <i class="fa-regular fa-calendar date-icon"></i>
+            </div>
+
+            <!-- Guests -->
+            <div class="form-group guests-group">
+              <select name="guests" id="guests">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+              <i class="fa-solid fa-user guest-icon"></i>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-group submit-group">
+              <button class="btn-red btn-submit" type="submit">Search</button>
+            </div>
+
+          </form>
+        </div>
+      </section>
   </div>
 
 
