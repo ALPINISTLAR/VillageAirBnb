@@ -387,3 +387,29 @@ button{
 {
   flex-grow: 1;
 }
+/* SECTIONS */
+.section {
+  padding: 5rem 0;
+}
+.section-title {
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--title-color);
+  margin-bottom: 1rem;
+}
+.section-info {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.section-content-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.section-content-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
