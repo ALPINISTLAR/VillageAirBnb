@@ -1,23 +1,32 @@
+// Banner Navigation
 const BannerNavigation = document.querySelector('.banner-navigation');
-const offset = BannerNavigation.offsetTop;
 
-window.addEventListener('scroll', () => {
-  if(window.scrollY >= offset) {
-    BannerNavigation.classList.add('fixed');
-  } else {
-    BannerNavigation.classList.remove('fixed');
-  }
-});
+if (BannerNavigation) {
+  const offset = BannerNavigation.offsetTop;
 
+  window.addEventListener('scroll', () => {
+    if (window.scrollY >= offset) {
+      BannerNavigation.classList.add('fixed');
+    } else {
+      BannerNavigation.classList.remove('fixed');
+    }
+  });
+}
+
+// Find Homestay Links
 const links = document.querySelectorAll('.find-homestay');
 const input = document.getElementById('location');
 
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    input.focus();
+if (links.length > 0 && input) {
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      input.focus();
+    });
   });
-});
+}
+
+
 
 function toggleReview(button) {
   const reviewCard = button.closest('.testimonial-card');
