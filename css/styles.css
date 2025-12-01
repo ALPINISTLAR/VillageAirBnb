@@ -956,3 +956,92 @@ align-items: center;
 .listing-form_submit-btn {
   max-width: 15rem;
 }
+/* ~~~~~~~~~~~~~~~~ */
+/* PROPERTIES PAGE */
+/* *************** */
+.properties-grid{
+  padding: 3rem 3rem 2rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+.header__container-properties .search-form-wrapper {
+  padding: 0.6rem 0;
+  background-color: transparent;
+}
+
+/* PROPERTIES PAGE - pagination */
+/* Pagination Container */
+#paginationControls {
+  margin-bottom: 2.5rem;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+/* Pagination Buttons */
+.pagination-btn {
+  display: block;
+  max-width: fit-content;
+  align-items: center;
+  padding: 0.3rem;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.pagination-btn i{
+  font-size: 0.8rem;
+  width: 1rem;
+}
+.pagination-btn:hover:not(:disabled) {
+  background: #fbd2e9;
+  border-color: var(--red);
+  color: var(--red-50);
+}
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* Page Numbers */
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pagination-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.pagination-number:hover {
+  background: #fbd2e9;
+  border-color: var(--red);
+  color: var(--red-50);
+}
+.pagination-number.active {
+  background: var(--red);
+  color: var(--white);
+}
+.pagination-dots {
+  color: var(--text-color-secondary);
+  padding: 0 4px;
+  font-weight: 600;
+}
