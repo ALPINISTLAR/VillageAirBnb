@@ -3,12 +3,14 @@
   --red: #CA005D;
   --red-75: rgb(202, 0, 93, 0.75);
   --blue: #2563EB;
+  --success-color: #16a34a;
   --blue-70: rgb(37, 99, 235, 0.7);
   --gold: #EFB31F;
   --red-50: rgb(202, 0, 93, 0.5);
   --title-color: #000;
   --text-color: #333;
   --text-color-50: rgb(51, 51, 51, 0.5);
+  --text-color-secondary: #666;
   --white: #fff;
   --white-60: rgb(255, 255, 255, 0.6);
   --light-bg: #f9f9f9;
@@ -16,6 +18,7 @@
   --transition: all 0.3s ease;
   --gradient: linear-gradient(135deg, #EFB31F 0%, #6D635F 100%);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --border-color: #ddd;
 }
 /* ** GLOBAL STYLES ** */
 html
@@ -93,8 +96,7 @@ select:-webkit-autofill:focus {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 25px;
-  border: 3px solid red;
+  padding: 0 1.5rem;
 }
 /*==={@} BUTTON {@}==*/
 button{
@@ -108,10 +110,11 @@ button{
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   cursor: pointer;
   transition: var(--transition);
   border-radius: 0.5rem;
+  text-wrap: nowrap;
 }
 .btn-cta{
   color: var(--primary-color);
@@ -135,7 +138,7 @@ button{
   color: var(--white);
   transition: var(--transition);
 }
-.btn-submit:hover{
+.btn-submit,.btn-red:hover{
   background-color: var(--red-75);
 }
 .btn-submit:active{
@@ -159,7 +162,6 @@ button{
   background-size: cover;
   background-position: center center;
 }
-
 .header__container {
   display: flex;
   align-items: center;
@@ -344,7 +346,6 @@ button{
   color: #6b7280;
   pointer-events: none;
 }
-
 /* Flatpickr Styles */
 .flatpickr-day.in-range {
   background-color: var(--blue-70) !important;
@@ -357,7 +358,6 @@ button{
 .flatpickr-day.in-range:hover {
   background: var(--blue) !important;
 }
-
 /* Start date */
 .flatpickr-day.start-date {
   background-color: var(--blue) !important;
@@ -365,7 +365,6 @@ button{
   color: white !important;
   font-weight: 600;
 }
-
 /* End date */
 .flatpickr-day.end-date {
   background-color: var(--blue) !important;
@@ -436,7 +435,7 @@ button{
   background-color: var(--red-50);
 }
 .banner-navigation .sitenav__link {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .fixed {
   position: fixed;
@@ -487,7 +486,7 @@ button{
   width: 15.5rem;
   padding:  1.2rem 0.6rem;
   gap: 1.2rem;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   transition: var(--transition);
   position: relative;
 }
@@ -496,8 +495,8 @@ button{
   box-shadow: var(--shadow);
 }
 .how-it-works_card-icon {
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -522,7 +521,7 @@ button{
 }
 .featured-stays-card_img--wrp {
   width: 100%;
-  height: 240px;
+  height: 15rem;
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -663,9 +662,9 @@ button{
 }
 /* $$++)(= TESTIMONIAL SECTION =)(++$$ */
 .testimonial-section{
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .testimonials{
   margin-bottom: 1rem;
@@ -784,9 +783,6 @@ align-items: center;
 }
 .list-footer__link:hover{
   color: var(--red);
-}
-.container{
-  border: none;
 }
 .footer__container-bottom{
   border-top: 1px solid var(--white-60);
@@ -934,8 +930,6 @@ align-items: center;
 }
 #image-upload{
   display: none;
-}
-.listing-form_file-input {
 }
 .listing-form_image-preview--grid {
   display: flex;
