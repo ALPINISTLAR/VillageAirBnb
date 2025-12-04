@@ -26,8 +26,6 @@ if (links.length > 0 && input) {
   });
 }
 
-
-
 function toggleReview(button) {
   const reviewCard = button.closest('.testimonial-card');
   const reviewText = reviewCard.querySelector('.testimonial-card_comment');
@@ -56,52 +54,95 @@ function highlightRange(dObj, dStr, fp, dayElem) {
       dayElem.classList.add('in-range');
     }
 
-    // Check-in day
-    if (dateTime === checkInTime) {
-      dayElem.classList.add('start-date');
-    }
-
-    // Check-out day
-    if (dateTime === checkOutTime) {
-      dayElem.classList.add('end-date');
-    }
+    if (dateTime === checkInTime) dayElem.classList.add('start-date');
+    if (dateTime === checkOutTime) dayElem.classList.add('end-date');
   }
 }
-// Check-in picker
-const checkInPicker = flatpickr("#checkIn", {
-  dateFormat: "M d, Y",
-  minDate: "today",
-  onChange: function(selectedDates) {
-    checkInDate = selectedDates[0];
 
-    if (selectedDates.length > 0) {
-      const nextDay = new Date(selectedDates[0]);
-      nextDay.setDate(nextDay.getDate() + 1);
-      checkOutPicker.set('minDate', nextDay);
+const checkInInput = document.querySelector("#checkIn");
+const checkOutInput = document.querySelector("#checkOut");
 
-      // Cleaning if check-out date is before check-in
-      if (checkOutDate && checkOutDate <= checkInDate) {
-        checkOutPicker.clear();
-        checkOutDate = null;
+if (checkInInput && checkOutInput) {
+  const checkInPicker = flatpickr(checkInInput, {
+    dateFormat: "M d, Y",
+    minDate: "today",
+    onChange: function(selectedDates) {
+      checkInDate = selectedDates[0];
+      if (selectedDates.length > 0) {
+        const nextDay = new Date(selectedDates[0]);
+        nextDay.setDate(nextDay.getDate() + 1);
+        checkOutPicker.set('minDate', nextDay);
+
+        if (checkOutDate && checkOutDate <= checkInDate) {
+          checkOutPicker.clear();
+          checkOutDate = null;
+        }
       }
-    }
-    // update calendar
-    checkInPicker.redraw();
-    checkOutPicker.redraw();
-  },
-  onDayCreate: highlightRange
-});
+      checkInPicker.redraw();
+      checkOutPicker.redraw();
+    },
+    onDayCreate: highlightRange
+  });
 
-// Check-out picker
-const checkOutPicker = flatpickr("#checkOut", {
-  dateFormat: "M d, Y",
-  minDate: "today",
-  onChange: function(selectedDates) {
-    checkOutDate = selectedDates[0];
+  const checkOutPicker = flatpickr(checkOutInput, {
+    dateFormat: "M d, Y",
+    minDate: "today",
+    onChange: function(selectedDates) {
+      checkOutDate = selectedDates[0];
+      checkInPicker.redraw();
+      checkOutPicker.redraw();
+    },
+    onDayCreate: highlightRange
+  });
+}
 
-    // update calendar
-    checkInPicker.redraw();
-    checkOutPicker.redraw();
-  },
-  onDayCreate: highlightRange
+
+document.addEventListener("DOMContentLoaded", () => {
+  // SIGN UP MODAL
+  const signUpModal = document.getElementById("signup-form");
+  const openSignUpBtn = document.getElementById("signup-open");
+  const closeSignUpBtn = document.getElementById("signup-close");
+
+  if (openSignUpBtn && signUpModal && closeSignUpBtn) {
+    openSignUpBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      signUpModal.classList.add("active-modal");
+    });
+
+    closeSignUpBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      signUpModal.classList.remove("active-modal");
+    });
+
+    signUpModal.addEventListener("click", (e) => {
+      if (e.target === signUpModal) {
+        signUpModal.classList.remove("active-modal");
+      }
+    });
+  }
+
+  // ======================
+  // SIGN IN MODAL
+  // ======================
+  const signInModal = document.getElementById("signin-form"); // bu sign-in form section ID
+  const openSignInBtn = document.getElementById("signin-open"); // Sign In tugma (HTML’da kerak)
+  const closeSignInBtn = document.getElementById("signin-close");
+
+  if (openSignInBtn && signInModal && closeSignInBtn) {
+    openSignInBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      signInModal.classList.add("active-modal");
+    });
+
+    closeSignInBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      signInModal.classList.remove("active-modal");
+    });
+
+    signInModal.addEventListener("click", (e) => {
+      if (e.target === signInModal) {
+        signInModal.classList.remove("active-modal");
+      }
+    });
+  }
 });
