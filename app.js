@@ -258,3 +258,95 @@ app.post('/api/properties', upload.array('images', 10), async (req, res) => {
   }
 });
 
+// AUTHENTICATION
+// SIGNUP
+app.post("/signup", async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+
+    const userExists = await db.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+
+    if (userExists.rows.length > 0) {
+      return res.send("Email already registered!");
+    }
+
+    let role_id = 1;
+    if (role === "host") role_id = 2;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await db.query(
+      `
+      INSERT INTO users(name, email, password, role_id, created_at)
+      VALUES($1, $2, $3, $4, NOW())
+      RETURNING id, name, email, role_id;
+      `,
+      [name, email, hashedPassword, role_id]
+    );
+
+    req.session.user = {
+      id: newUser.rows[0].id,
+      name: newUser.rows[0].name,
+      email: newUser.rows[0].email,
+      role: newUser.rows[0].role_id
+    };
+
+    res.redirect("/");
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Signup error");
+  }
+});
+
+// SIGN-IN
+app.post("/signin", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const userResult = await db.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.send("User not found");
+    }
+
+    const user = userResult.rows[0];
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.send("Incorrect password");
+    }
+
+    req.session.user = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role_id
+    };
+
+    res.redirect("/");
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Signin error");
+  }
+});
+
+// LOGOUT
+app.get("/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) console.error(err);
+    res.redirect("/");
+  });
+});
+
+// START SERVER
+app.listen(3000, () =>
+  console.log("Server running")
+);
