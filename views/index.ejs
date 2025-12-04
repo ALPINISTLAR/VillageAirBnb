@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
   <title>Village AirBNB</title>
   <!-- FONT AWESOME -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,8 +18,8 @@
   <!-- =============================== -->
   <!-- =====       STYLES        ===== -->
   <!-- =============================== -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <!-- HEADER - HERO SECTION -->
@@ -26,7 +27,7 @@
     <!-- HEADER -->
     <header class="header">
       <div class="header__container">
-        <a href="index" class="header__logo logo">
+        <a href="/" class="header__logo logo">
           <svg class="logo_icon icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
           </svg>
@@ -35,13 +36,24 @@
         <!-- Sitenav -->
         <nav class="sitenav">
           <ul class="sitenav__list">
-            <li class="sitenav__item"><a class="sitenav__link" href="#how-it-works" >how it works</a></li>
-            <li class="sitenav__item"><a class="sitenav__link" href="#why-choose" >inspire me</a></li>
-            <li class="sitenav__item"><a class="sitenav__link" href="#equipment" >equipment</a></li>
-            <li class="sitenav__item"><a class="sitenav__link" href="#" >sign up</a></li>
-            <li class="sitenav__item"><a class="sitenav__link" href="#" >log in</a></li>
-            <li class="sitenav__item"><a class="sitenav__link" href="#" >english</a></li>
-            <li class="sitenav__item"><a class="sitenav__link" href="/list-room" >list a room</a></li>
+    <li class="sitenav__item"><a class="sitenav__link" href="#how-it-works">how it works</a></li>
+    <li class="sitenav__item"><a class="sitenav__link" href="#why-choose">inspire me</a></li>
+    <li class="sitenav__item"><a class="sitenav__link" href="#equipment">equipment</a></li>
+
+    <!-- USER SECTION  -->
+    <li class="sitenav__item <%= user ? '' : 'hidden' %>">
+      <a class="sitenav__link" href="/profile" id="profile-link">profile</a>
+    </li>
+
+    <!-- AUTH SECTION -->
+    <li class="sitenav__item <%= user ? 'hidden' : '' %>">
+      <a class="sitenav__link" href="#" id="signup-open">sign up</a>
+    </li>
+    <li class="sitenav__item <%= user ? 'hidden' : '' %>">
+      <a class="sitenav__link" href="#" id="signin-open">sign in</a>
+    </li>
+
+    <li class="sitenav__item"><a class="sitenav__link" href="/list-room">list a room</a></li>
           </ul>
         </nav>
       </div>
