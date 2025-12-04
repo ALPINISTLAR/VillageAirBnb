@@ -8,8 +8,23 @@ const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
+const db = require("./models/db");
 
-// Static files (css, js, img)
+// Body Parser
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Sessions
+app.use(
+  session({
+    secret: "very-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }
+  })
+);
+
+// Static files
 app.use(express.static(path.join(__dirname, "public")));
 
 // EJS
