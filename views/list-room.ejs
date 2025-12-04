@@ -40,10 +40,10 @@
 <!-- USER SECTION -->
 <div class="user-section <%= user ? '' : 'hidden' %>">
     <div class="user-name">Welcome, <span id="userName"><%= user ? user.name : '' %></span></div>
-                <a href="/profile" class="user-profile-link">
+    <a href="/profile" class="user-profile-link">
         <img class="user-avatar" src="/img/avatar.png" alt="user-avatar" width="50" height="50">
-                </a>
-            </div>
+    </a>
+</div>
 
 
         </div>
@@ -67,157 +67,177 @@
 
 
                <!-- Form -->
-<div class="listing-form_container">
-    <!-- Property Details -->
-    <div class="listing-form_section">
-        <h2 class="listing-form_section-title">
-            <i class="fa-solid fa-house" aria-hidden="true"></i>
-            Property Details
-        </h2>
+<!-- Form -->
+<form action="/api/properties" method="POST" enctype="multipart/form-data" id="listingForm">
+    <div class="listing-form_container">
+        <!-- Property Details -->
+        <div class="listing-form_section">
+            <h2 class="listing-form_section-title">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                Property Details
+            </h2>
 
-        <div class="listing-form_group">
-            <label class="listing-form_label">Property Name *</label>
-            <input type="text" id="propertyName" class="listing-form_input" placeholder="Traditional Mountain Home">
-        </div>
-
-        <div class="listing-form_grid">
             <div class="listing-form_group">
-                <label class="listing-form_label">Max Guests *</label>
-                <input type="number" id="maxGuests" class="listing-form_input" placeholder="4">
+                <label class="listing-form_label">Property Name *</label>
+                <input type="text" name="propertyName" id="propertyName" class="listing-form_input" placeholder="Traditional Mountain Home" required>
             </div>
+
+            <div class="listing-form_grid">
+                <div class="listing-form_group">
+                    <label class="listing-form_label">Max Guests *</label>
+                    <input type="number" name="maxGuests" id="maxGuests" class="listing-form_input" placeholder="4" required>
+                </div>
+                <div class="listing-form_group">
+                    <label class="listing-form_label">Bedrooms *</label>
+                    <input type="number" name="bedrooms" id="bedrooms" class="listing-form_input" placeholder="2" required>
+                </div>
+                <div class="listing-form_group">
+                    <label class="listing-form_label">Bathrooms *</label>
+                    <input type="number" name="bathrooms" id="bathrooms" class="listing-form_input" placeholder="1" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location -->
+        <div class="listing-form_section">
+            <h2 class="listing-form_section-title">
+                <i class="fas fa-map-marker-alt"></i>
+                Location
+            </h2>
+
+            <div class="listing-form_grid">
+                <div class="listing-form_group">
+                    <label class="listing-form_label">Region *</label>
+                    <input type="text" name="region" id="region" class="listing-form_input" placeholder="Fergana" required>
+                </div>
+                <div class="listing-form_group">
+                    <label class="listing-form_label">City/Village *</label>
+                    <input type="text" name="city" id="city" class="listing-form_input" placeholder="Margilan city" required>
+                </div>
+                <div class="listing-form_group">
+                    <label class="listing-form_label">Address *</label>
+                    <input type="text" name="address" id="address" class="listing-form_input" placeholder="Independence street 164" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="listing-form_section">
+            <h2 class="listing-form_section-title">
+                <i class="fas fa-dollar-sign"></i>
+                Pricing
+            </h2>
+
             <div class="listing-form_group">
-                <label class="listing-form_label">Bedrooms *</label>
-                <input type="number" id="bedrooms" class="listing-form_input" placeholder="2">
+                <label class="listing-form_label">Price per Night (USD) *</label>
+                <div class="listing-form_price-wrapper">
+                    <span class="listing-form_price-symbol">$</span>
+                    <input type="number" name="pricePerNight" id="pricePerNight" class="listing-form_input listing-form_price-input" placeholder="39" required>
+                </div>
             </div>
+        </div>
+
+        <!-- Photos -->
+        <div class="listing-form_section">
+            <h2 class="listing-form_section-title">
+                <i class="fas fa-cloud-upload-alt"></i>
+                Photos
+            </h2>
+
+            <label for="image-upload" class="listing-form_upload-area">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="listing-form_upload-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" x2="12" y1="3" y2="15"></line>
+                </svg>
+                <div class="listing-form_upload-text">Click to upload images</div>
+                <div class="listing-form_upload-hint">PNG, JPG up to 5MB each</div>
+            </label>
+            <input type="file" name="images" id="image-upload" class="listing-form_file-input" multiple accept="image/*">
+            <div id="imagePreviewGrid" class="listing-form_image-preview--grid"></div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="listing-form_section">
+            <h2 class="listing-form_section-title">Amenities</h2>
+
+
+            <div hidden>
+                <input type="checkbox" name="amenities" value="wifi" id="amenity-wifi">
+                <input type="checkbox" name="amenities" value="kitchen" id="amenity-kitchen">
+                <input type="checkbox" name="amenities" value="parking" id="amenity-parking">
+                <input type="checkbox" name="amenities" value="ac" id="amenity-ac">
+                <input type="checkbox" name="amenities" value="tv" id="amenity-tv">
+                <input type="checkbox" name="amenities" value="coffee" id="amenity-coffee">
+                <input type="checkbox" name="amenities" value="hiking" id="amenity-hiking">
+                <input type="checkbox" name="amenities" value="pool" id="amenity-pool">
+                <input type="checkbox" name="amenities" value="gym" id="amenity-gym">
+            </div>
+
+            <div class="listing-form_amenities-grid">
+                <button type="button" class="listing-form_amenity-btn" data-amenity="wifi">
+                    <i class="fas fa-wifi"></i>
+                    <div class="listing-form_amenity-label">Wi-Fi</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="kitchen">
+                    <i class="fas fa-utensils"></i>
+                    <div class="listing-form_amenity-label">Kitchen</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="parking">
+                    <i class="fas fa-parking"></i>
+                    <div class="listing-form_amenity-label">Free Parking</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="ac">
+                    <i class="fas fa-snowflake"></i>
+                    <div class="listing-form_amenity-label">Air Conditioning</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="tv">
+                    <i class="fas fa-tv"></i>
+                    <div class="listing-form_amenity-label">TV</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="coffee">
+                    <i class="fas fa-mug-hot"></i>
+                    <div class="listing-form_amenity-label">Coffee Maker</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="hiking">
+                    <i class="fas fa-hiking"></i>
+                    <div class="listing-form_amenity-label">Hiking Access</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="pool">
+                    <i class="fas fa-swimming-pool"></i>
+                    <div class="listing-form_amenity-label">Pool</div>
+                </button>
+
+                <button type="button" class="listing-form_amenity-btn" data-amenity="gym">
+                    <i class="fas fa-dumbbell"></i>
+                    <div class="listing-form_amenity-label">Gym</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="listing-form_section">
+            <h2 class="listing-form_section-title">Description</h2>
+
             <div class="listing-form_group">
-                <label class="listing-form_label">Bathrooms *</label>
-                <input type="number" id="bathrooms" class="listing-form_input" placeholder="1">
+                <label class="listing-form_label">Tell guests about your place *</label>
+                <textarea name="description" id="description" class="listing-form_textarea" rows="6" placeholder="Describe your property, the surrounding area, and what makes it special..." required></textarea>
             </div>
         </div>
-    </div>
 
-    <!-- Location -->
-    <div class="listing-form_section">
-        <h2 class="listing-form_section-title">
-            <i class="fas fa-map-marker-alt"></i>
-            Location
-        </h2>
-
-        <div class="listing-form_grid">
-                        <div class="listing-form_group">
-                <label class="listing-form_label">Region *</label>
-                <input type="text" id="region" class="listing-form_input" placeholder="Fergana Valley">
-            </div>
-            <div class="listing-form_group">
-                <label class="listing-form_label">City/Village *</label>
-                <input type="text" id="city" class="listing-form_input" placeholder="Khokand city">
-            </div>
-            <div class="listing-form_group">
-            <label class="listing-form_label">Street Address *</label>
-            <input type="text" id="address" class="listing-form_input" placeholder="Independence street">
-        </div>
+        <!-- Submit Button -->
+        <div class="listing-form_submit-section">
+            <button type="submit" id="submitButton" class="listing-form_submit-btn btn btn-red btn-submit">Submit Listing</button>
         </div>
     </div>
-
-    <!-- Pricing -->
-    <div class="listing-form_section">
-        <h2 class="listing-form_section-title">
-            <i class="fas fa-dollar-sign"></i>
-            Pricing
-        </h2>
-
-        <div class="listing-form_group">
-            <label class="listing-form_label">Price per Night (USD) *</label>
-            <div class="listing-form_price-wrapper">
-                <span class="listing-form_price-symbol">$</span>
-                <input type="number" id="pricePerNight" class="listing-form_input listing-form_price-input" placeholder="42">
-            </div>
-        </div>
-    </div>
-
-    <!-- Photos -->
-    <div class="listing-form_section">
-        <h2 class="listing-form_section-title">
-            <i class="fas fa-cloud-upload-alt"></i>
-            Photos
-        </h2>
-
-        <label for="image-upload" class="listing-form_upload-area">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="listing-form_upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
-            <div class="listing-form_upload-text">Click to upload images</div>
-            <div class="listing-form_upload-hint">PNG, JPG up to 5MB each</div>
-        </label>
-        <input type="file" id="image-upload" class="listing-form_file-input" multiple accept="image/*">
-        <div id="imagePreviewGrid" class="listing-form_image-preview--grid"></div>
-    </div>
-
-    <!-- Amenities -->
-    <div class="listing-form_section">
-        <h2 class="listing-form_section-title">Amenities</h2>
-
-        <div class="listing-form_amenities-grid">
-            <button type="button" class="listing-form_amenity-btn" data-amenity="wifi">
-                <i class="fas fa-wifi"></i>
-                <div class="listing-form_amenity-label">Wi-Fi</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="kitchen">
-                <i class="fas fa-utensils"></i>
-                <div class="listing-form_amenity-label">Kitchen</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="parking">
-                <i class="fas fa-parking"></i>
-                <div class="listing-form_amenity-label">Free Parking</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="ac">
-                <i class="fas fa-snowflake"></i>
-                <div class="listing-form_amenity-label">Air Conditioning</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="tv">
-                <i class="fas fa-tv"></i>
-                <div class="listing-form_amenity-label">TV</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="coffee">
-                <i class="fas fa-mug-hot"></i>
-                <div class="listing-form_amenity-label">Coffee Maker</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="hiking">
-                <i class="fas fa-hiking"></i>
-                <div class="listing-form_amenity-label">Hiking Access</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="pool">
-                <i class="fas fa-swimming-pool"></i>
-                <div class="listing-form_amenity-label">Pool</div>
-            </button>
-
-            <button type="button" class="listing-form_amenity-btn" data-amenity="gym">
-                <i class="fas fa-dumbbell"></i>
-                <div class="listing-form_amenity-label">Gym</div>
-            </button>
-        </div>
-    </div>
-
-    <!-- Description -->
-    <div class="listing-form_section">
-        <h2 class="listing-form_section-title">Description</h2>
-
-        <div class="listing-form_group">
-            <label class="listing-form_label">Tell guests about your place *</label>
-            <textarea id="description" class="listing-form_textarea" rows="6" placeholder="Describe your property, the surrounding area, and what makes it special..."></textarea>
-        </div>
-    </div>
-
-    <!-- Submit Button -->
-    <div class="listing-form_submit-section">
-        <button type="button" id="submitButton" class="listing-form_submit-btn btn btn-red btn-submit">Submit Listing</button>
-    </div>
-</div>
+</form>
         </div>
     </div>
 </main>
