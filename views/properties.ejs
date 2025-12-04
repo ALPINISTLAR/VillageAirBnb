@@ -109,7 +109,33 @@
       </section>
     </div>
     <div id="propertiesGrid" class="properties-grid">
+  <% properties.forEach(p => { %>
+    <a href="/property/<%= p.id %>" class="property-card">
+      <div class="featured-stays-card">
+        <div class="featured-stays-card_img--wrp">
+          <img src="<%= p.image_url %>" class="featured-stays-card_img" alt="">
+        </div>
+        <div class="featured-stays-card_info">
+          <h3 class="featured-stays-card_title"><%= p.title %></h3>
+          <div class="featured-stays-card_location">
+            <i class="fa-solid fa-location-dot"></i>
+            <%= p.region %>
+          </div>
+<ul class="featured-stays-card_amenities">
+  <% if (p.amenities && p.amenities.length > 0) { %>
+    <% p.amenities.forEach(a => { %>
+      <li><%= a %></li>
+    <% }) %>
+  <% } %>
+</ul>
 
+          <div class="featured-stays-card_price">
+            <b>$<%= p.price_per_night %></b><span>/per night</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  <% }) %>
     </div>
     <div id="paginationControls"></div>
   </main>

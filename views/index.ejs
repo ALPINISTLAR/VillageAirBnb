@@ -173,31 +173,36 @@
         <h2 class="section-title">Featured village stays</h2>
         <p class="section-info">Handpicked homes offering the most authentic experiences</p>
         <div class="section-content-flex">
-          <!-- card 1 -->
-           <a href="/property" class="property-card">
+          <!-- card  -->
+          <% properties.forEach(p => { %>
+            <a href="/property/<%= p.id %>" class="property-card">
           <div class="featured-stays-card">
             <div class="featured-stays-card_img--wrp">
-              <img src="./img/hero-bg.webp" class="featured-stays-card_img" alt="" width="350" height="280">
+                  <img src="<%= p.image_url %>" class="featured-stays-card_img" alt="">
             </div>
             <div class="featured-stays-card_info">
-              <h3 class="featured-stays-card_title">
-                traditional mountain home
-              </h3>
+                  <h3 class="featured-stays-card_title"><%= p.title %></h3>
               <div class="featured-stays-card_location">
                 <i class="fa-solid fa-location-dot"></i>
-                fergana valley
+                    <%= p.region %>, <%= p.city %>
               </div>
               <ul class="featured-stays-card_amenities">
-                <li>4 guests</li>
-                <li>2 bedroom</li>
-                <li>2 bathroom</li>
-                <li>Wi-fi</li>
+                    <% if (p.amenities && p.amenities.length > 0) { %>
+                      <% p.amenities.forEach(a => { %>
+                        <li><%= a %></li>
+                        <% }) %>
+                        <% } %>
               </ul>
-              <div class="featured-stays-card_price"><b>$42</b><span>/per night</span> </div>
+
+                      <div class="featured-stays-card_price">
+                        <b>$<%= p.price_per_night %></b><span>/per night</span>
+                      </div>
             </div>
           </div>
            </a>
+                <% }) %>
         </div>
+              <a href="/properties" class="btn btn-red">more stays</a>
       </section>
     </div>
 
