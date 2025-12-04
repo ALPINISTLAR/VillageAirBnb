@@ -165,4 +165,96 @@ app.get("/profile", (req, res) => {
   res.render("profile", { user: req.session.user });
 });
 
-app.listen(3000, () => console.log("Server running at http://localhost:3000"));
+// PROPERTY MANAGEMENT (POST)
+// CREATE PROPERTY
+app.post('/api/properties', upload.array('images', 10), async (req, res) => {
+  console.log('=== FORM SUBMITTED ===');
+  console.log('User:', req.session.user);
+  console.log('Body:', req.body);
+  console.log('Files:', req.files);
+
+  try {
+    if (!req.session.user) {
+      console.log('ERROR: User not logged in');
+      return res.status(401).send('Please login first');
+    }
+
+    const {
+      propertyName,
+      region,
+      city,
+      address,
+      pricePerNight,
+      maxGuests,
+      bedrooms,
+      bathrooms,
+      description,
+      amenities
+    } = req.body;
+
+    const userId = req.session.user.id;
+
+    //  save propety in databse
+    const propertyResult = await db.query(`
+      INSERT INTO properties (
+        host_id, title, region, city, address,
+        price_per_night, capacity, bedrooms, bathrooms, description, created_at
+      )
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW())
+      RETURNING id
+    `, [userId, propertyName, region, city, address, pricePerNight, maxGuests, bedrooms, bathrooms, description]);
+
+    const propertyId = propertyResult.rows[0].id;
+    console.log('Property created with ID:', propertyId);
+
+    // save images
+    if (req.files && req.files.length > 0) {
+      console.log('Saving images...');
+      for (let i = 0; i < req.files.length; i++) {
+        const imageUrl = '/uploads/' + req.files[i].filename;
+        await db.query(`
+          INSERT INTO property_images (property_id, url, position)
+          VALUES ($1, $2, $3)
+        `, [propertyId, imageUrl, i]);
+      }
+    }
+
+    // save amenities
+    if (amenities) {
+      console.log('Saving amenities:', amenities);
+      const amenitiesArray = Array.isArray(amenities) ? amenities : [amenities];
+
+      for (let amenityName of amenitiesArray) {
+        const amenityResult = await db.query(`
+          SELECT id FROM amenities WHERE name = $1
+        `, [amenityName]);
+
+        if (amenityResult.rows.length > 0) {
+          await db.query(`
+            INSERT INTO property_amenities (property_id, amenity_id)
+            VALUES ($1, $2)
+          `, [propertyId, amenityResult.rows[0].id]);
+        } else {
+          const newAmenity = await db.query(`
+            INSERT INTO amenities (name)
+            VALUES ($1)
+            RETURNING id
+          `, [amenityName]);
+
+          await db.query(`
+            INSERT INTO property_amenities (property_id, amenity_id)
+            VALUES ($1, $2)
+          `, [propertyId, newAmenity.rows[0].id]);
+        }
+      }
+    }
+
+    console.log('Property created successfully!');
+    res.redirect('/?success=true');
+
+  } catch (err) {
+    console.error('ERROR:', err);
+    res.status(500).send('Error creating property: ' + err.message);
+  }
+});
+
