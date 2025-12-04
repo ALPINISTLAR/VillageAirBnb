@@ -1,5 +1,10 @@
+// BASIC SETUP
 const express = require("express");
 const path = require("path");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
+const multer = require("multer");
+const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
