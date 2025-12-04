@@ -98,16 +98,12 @@ function showTabContent(tabName) {
     selectedContent.classList.add('active');
   }
 }
-// ========================================
 // INITIALIZE ON PAGE LOAD
-// ========================================
 document.addEventListener('DOMContentLoaded', function() {
   initializeProfile();
 });
 
-// ========================================
 // EDIT PROFILE MODAL
-// ========================================
 function openEditProfileModal() {
   const modal = document.getElementById('editProfileModal');
 
@@ -117,7 +113,6 @@ function openEditProfileModal() {
   document.getElementById('avatarPreview').src = currentUser.avatar;
 
   modal.classList.add('active-modal');
-  // document.body.style.overflow = 'hidden';
 }
 
 function closeEditProfileModal() {
