@@ -38,14 +38,14 @@
 <div class="auth-section <%= user ? 'hidden' : '' %>">
     <button class="btn btn-red btn-submit" id="signup-open">sign up</button>
     <button class="btn btn-red btn-submit" id="signin-open">sign in</button>
-            </div>
+</div>
 <!-- USER SECTION -->
 <div class="user-section <%= user ? '' : 'hidden' %>">
     <div class="user-name">Welcome, <span id="userName"><%= user ? user.name : '' %></span></div>
-                <a href="/profile" class="user-profile-link">
+    <a href="/profile" class="user-profile-link">
         <img class="user-avatar" src="/img/avatar.png" alt="user-avatar" width="50" height="50">
-                </a>
-            </div>
+    </a>
+</div>
         </div>
     </header>
 
@@ -58,246 +58,223 @@
             <!-- Image Gallery -->
             <div class="gallery">
                 <div class="gallery-images" id="galleryImages">
-                    <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1200" alt="Mountain Home">
-                    <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200" alt="Interior">
-                    <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1200" alt="View">
-                    <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1200" alt="Exterior">
-                </div>
-                <button class="gallery-btn prev" onclick="changeSlide(-1)">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="gallery-btn next" onclick="changeSlide(1)">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="gallery-dots" id="galleryDots"></div>
-            </div>
-
-            <!-- Content Layout -->
-            <div class="content-layout">
-                <!-- Property Details -->
-                <div class="property-details">
-                    <div class="property-header">
-                        <h1>Traditional Mountain Home</h1>
-                        <div class="location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Fergana Valley, Khokand City</span>
-                        </div>
-                        <div class="property-meta">
-                            <span class="meta-item">
-                                <i class="fas fa-users"></i>
-                                4 Guests
-                            </span>
-                            <span class="meta-item">
-                                <i class="fas fa-bed"></i>
-                                2 Bedroom
-                            </span>
-                            <span class="meta-item">
-                                <i class="fas fa-bath"></i>
-                                2 Bathroom
-                            </span>
-                            <span class="meta-item">
-                                <i class="fas fa-wifi"></i>
-                                Wi-Fi
-                            </span>
-                        </div>
+                    <% property.images.forEach(url => { %>
+                        <img src="<%= url %>" alt="Property Image">
+                        <% }) %>
                     </div>
 
-                    <!-- Description -->
-                    <div class="description">
-                        <h2>About this place</h2>
-                        <p>
-                            Experience authentic Uzbek village life in this beautifully restored traditional mountain home.
-                            Located in the heart of Fergana Valley, this cozy retreat offers stunning views of the surrounding
-                            mountains and valleys. The home features traditional Uzbek architecture combined with modern amenities
-                            to ensure a comfortable stay.
-                        </p>
-                        <br>
-                        <p>
-                            Wake up to the sounds of nature, enjoy home-cooked traditional meals prepared by local hosts,
-                            and explore nearby hiking trails. This is the perfect getaway for those seeking peace,
-                            cultural immersion, and natural beauty.
-                        </p>
-                    </div>
-
-                    <!-- Amenities -->
-                    <div class="amenities">
-                        <h2>Amenities</h2>
-                        <div class="amenities-grid">
-                            <div class="amenity-item">
-                                <i class="fas fa-wifi"></i>
-                                <span>Wi-Fi</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-utensils"></i>
-                                <span>Kitchen</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-parking"></i>
-                                <span>Free Parking</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-snowflake"></i>
-                                <span>Air Conditioning</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-tv"></i>
-                                <span>TV</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-mug-hot"></i>
-                                <span>Coffee Maker</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-hiking"></i>
-                                <span>Hiking Access</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-swimming-pool"></i>
-                                <span>Pool</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-dumbbell"></i>
-                                <span>Gym</span>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="gallery-btn prev" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-btn next" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="gallery-dots" id="galleryDots"></div>
                 </div>
 
-                <!-- Booking Card -->
-                <div class="booking-card">
-                    <div class="price-section">
-                        <div class="price">$42 <span>/per night</span></div>
-                    </div>
-
-                    <form class="booking-form" id="bookingForm">
-                        <div class="date-inputs">
-                            <!-- Check In -->
-                            <div class="form-group check-in-group">
-                                <input
-                                type="text"
-                                id="checkIn"
-                                class="custom-date-input"
-                                placeholder="Check in"
-                                readonly
-                                >
-                                <i class="fa-regular fa-calendar date-icon"></i>
+                <!-- Content Layout -->
+                <div class="content-layout">
+                    <!-- Property Details -->
+                    <div class="property-details">
+                        <div class="property-header">
+                            <!-- Title -->
+                            <h1><%= property.title %></h1>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <!-- Location -->
+                                <span><%= property.region %>, <%= property.city %>, <%= property.address %></span>
                             </div>
-
-                            <!-- Check Out -->
-                            <div class="form-group check-out-group">
-                                <input
-                                type="text"
-                                id="checkOut"
-                                class="custom-date-input"
-                                placeholder="Check out"
-                                readonly
-                                >
-                                <i class="fa-regular fa-calendar date-icon"></i>
+                            <div class="property-meta">
+                                <span class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <%= property.capacity %> Guests
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-bed"></i>
+                                    <%= property.bedrooms %> Bedroom
+                                </span>
+                                <span class="meta-item">
+                                    <i class="fas fa-bath"></i>
+                                    <%= property.bathrooms %> Bathroom
+                                </span>
                             </div>
                         </div>
 
-
-                        <!-- Guests -->
-                        <div class="form-group guests-group">
-                            <select name="guests" id="guests">
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                            </select>
-                            <i class="fa-solid fa-user guest-icon"></i>
-                            <i class="fa-solid fa-chevron-down select-icon"></i>
+                        <!-- Description -->
+                        <div class="description">
+                            <h2>About this place</h2>
+                            <p>
+                                <%= property.description %>
+                            </p>
                         </div>
 
-                        <div class="booking-summary">
-                            <div class="summary-row">
-                                <span>$42 × <span id="nights">0</span> nights</span>
-                                <span id="subtotal">$0</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Service fee</span>
-                                <span id="serviceFee">$0</span>
-                            </div>
-                            <div class="summary-row total">
-                                <span>Total</span>
-                                <span id="total">$0</span>
+                        <!-- Amenities -->
+                        <div class="amenities">
+                            <h2>Amenities</h2>
+                            <div class="amenities-grid">
+                                <% if (property.amenities && property.amenities.length > 0) { %>
+                                    <% property.amenities.forEach(a => { %>
+                                        <div class="amenity-item">
+                                            <%
+
+                                            let iconClass = '';
+                                            if (a === 'Wi-Fi') iconClass = 'fas fa-wifi';
+                                            else if (a === 'Kitchen') iconClass = 'fas fa-utensils';
+                                            else if (a === 'Free Parking') iconClass = 'fas fa-parking';
+                                            else if (a === 'AC' || a === 'Air Conditioning') iconClass = 'fas fa-snowflake';
+                                            else if (a === 'TV') iconClass = 'fas fa-tv';
+                                            else if (a === 'Coffee Maker') iconClass = 'fas fa-mug-hot';
+                                            else if (a === 'Hiking Access') iconClass = 'fas fa-hiking';
+                                            else if (a === 'Pool') iconClass = 'fas fa-swimming-pool';
+                                            else if (a === 'Gym') iconClass = 'fas fa-dumbbell';
+                                            %>
+                                            <i class="<%= iconClass %>"></i>
+                                            <span><%= a %></span>
+                                        </div>
+                                        <% }) %>
+                                        <% } else { %>
+                                            <p>No amenities listed for this property.</p>
+                                            <% } %>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Booking Card -->
+                                <div class="booking-card" data-price="<%= property.price_per_night %>">
+                                    <div class="price-section">
+                                        <!-- Booking Price -->
+                                        <div class="price">
+                                            $<%= property.price_per_night %> <span>/per night</span>
+                                        </div>
+                                    </div>
+
+                                    <form class="booking-form" id="bookingForm">
+                                        <div class="date-inputs">
+                                            <!-- Check In -->
+                                            <div class="form-group check-in-group">
+                                                <input
+                                                type="text"
+                                                id="checkIn"
+                                                class="custom-date-input"
+                                                placeholder="Check in"
+                                                readonly
+                                                >
+                                                <i class="fa-regular fa-calendar date-icon"></i>
+                                            </div>
+
+                                            <!-- Check Out -->
+                                            <div class="form-group check-out-group">
+                                                <input
+                                                type="text"
+                                                id="checkOut"
+                                                class="custom-date-input"
+                                                placeholder="Check out"
+                                                readonly
+                                                >
+                                                <i class="fa-regular fa-calendar date-icon"></i>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Guests -->
+                                        <div class="form-group guests-group">
+                                            <select name="guests" id="guests">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                            </select>
+                                            <i class="fa-solid fa-user guest-icon"></i>
+                                            <i class="fa-solid fa-chevron-down select-icon"></i>
+                                        </div>
+
+                                        <div class="booking-summary">
+                                            <div class="summary-row">
+                                                <span>$<%= property.price_per_night %> × <span id="nights">0</span> nights</span>
+                                                <span id="subtotal">$0</span>
+                                            </div>
+                                            <div class="summary-row">
+                                                <span>Service fee</span>
+                                                <span id="serviceFee">$0</span>
+                                            </div>
+                                            <div class="summary-row total">
+                                                <span>Total</span>
+                                                <span id="total">$0</span>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="book-btn">Book Now</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="book-btn">Book Now</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-          <!-- Booking Confirmation Modal -->
-    <div class="modal" id="bookingModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="modal-title">
-                <i class="fa-solid fa-clipboard-list"></i>Booking Request.</h2>
-            <div class="modal-details" id="modalDetails"></div>
-            <div class="modal-actions">
-                <button class="modal-btn btn-blue" onclick="closeModal()">confirm</button>
-                <button class="modal-btn btn-red" onclick="closeModal()">cancel</button>
-            </div>
-        </div>
-    </div>
-    </main>
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer__container container">
-            <div class="footer-logo-info">
-                <a href="/" class="footer_logo logo">
-                    <svg class="logo_icon icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                    </svg>
-                    <span>VillageAirBNB</span>
-                </a>
-                <p class="footer_info">Connecting travellers with authentic Uzbek village experiences since 2025</p>
-            </div>
+                        <!-- Booking Confirmation Modal -->
+                        <div class="modal" id="bookingModal">
+                            <div class="modal-content">
+                                <h2 class="modal-title">
+                                    <i class="fa-solid fa-clipboard-list"></i>Booking Request.</h2>
+                                    <div class="modal-details" id="modalDetails"></div>
+                                    <div class="modal-actions">
+                                        <button id="bookingConfirm" class="modal-btn btn-blue">confirm</button>
+                                        <button id="bookingCancel" class="modal-btn btn-red" >cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <!-- FOOTER -->
+                        <footer class="footer">
+                            <div class="footer__container container">
+                                <div class="footer-logo-info">
+                                    <a href="/" class="footer_logo logo">
+                                        <svg class="logo_icon icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                        </svg>
+                                        <span>VillageAirBNB</span>
+                                    </a>
+                                    <p class="footer_info">Connecting travellers with authentic Uzbek village experiences since 2025</p>
+                                </div>
 
 
-            <div class="footer-list--wrapper">
-                <!-- footer list 1 -->
-                <ul class="footer__list list-footer">
-                    <li><h3 class="footer-list__title">Company</h3></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">About us</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">how it works</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">careers</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">press</a></li>
-                </ul>
+                                <div class="footer-list--wrapper">
+                                    <!-- footer list 1 -->
+                                    <ul class="footer__list list-footer">
+                                        <li><h3 class="footer-list__title">Company</h3></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">About us</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">how it works</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">careers</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">press</a></li>
+                                    </ul>
 
-                <!-- footer list 2 -->
-                <ul class="footer__list list-footer">
-                    <li><h3 class="footer-list__title">support</h3></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">help center</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">safety guidelines</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">cancellation policy</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">contact us</a></li>
-                </ul>
+                                    <!-- footer list 2 -->
+                                    <ul class="footer__list list-footer">
+                                        <li><h3 class="footer-list__title">support</h3></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">help center</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">safety guidelines</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">cancellation policy</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">contact us</a></li>
+                                    </ul>
 
-                <!-- footer list 3 -->
-                <ul class="footer__list list-footer">
-                    <li><h3 class="footer-list__title">hosting</h3></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">become a host</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">host resources</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">host community</a></li>
-                    <li class="list-footer__item"><a class="list-footer__link" href="#">equipment rental</a></li>
-                </ul>
-            </div>
-        </div>
+                                    <!-- footer list 3 -->
+                                    <ul class="footer__list list-footer">
+                                        <li><h3 class="footer-list__title">hosting</h3></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">become a host</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">host resources</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">host community</a></li>
+                                        <li class="list-footer__item"><a class="list-footer__link" href="#">equipment rental</a></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-        <div class="container footer__container-bottom">
-            <p>© 2025 VillageAirBnB. All rights reserved. | Managed by Fergana Tourism Company</p>
-        </div>
-    </footer>
+                            <div class="container footer__container-bottom">
+                                <p>© 2025 VillageAirBnB. All rights reserved. | Managed by Fergana Tourism Company</p>
+                            </div>
+                        </footer>
 
 
                           <!-- MODAL -->
@@ -369,8 +346,8 @@
                               </button>
                             </form>
                           </section>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/details.js"></script>
-</body>
-</html>
+                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                        <script src="/js/main.js"></script>
+                        <script src="/js/details.js"></script>
+                    </body>
+                    </html>

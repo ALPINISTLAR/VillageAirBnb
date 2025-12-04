@@ -33,9 +33,9 @@
           </svg>
           <span>VillageAirBNB</span>
         </a>
-        <!-- Sitenav -->
-        <nav class="sitenav">
-          <ul class="sitenav__list">
+<!-- Sitenav -->
+<nav class="sitenav">
+  <ul class="sitenav__list">
     <li class="sitenav__item"><a class="sitenav__link" href="#how-it-works">how it works</a></li>
     <li class="sitenav__item"><a class="sitenav__link" href="#why-choose">inspire me</a></li>
     <li class="sitenav__item"><a class="sitenav__link" href="#equipment">equipment</a></li>
@@ -54,8 +54,8 @@
     </li>
 
     <li class="sitenav__item"><a class="sitenav__link" href="/list-room">list a room</a></li>
-          </ul>
-        </nav>
+  </ul>
+</nav>
       </div>
     </header>
     <!-- HERO -->
@@ -188,175 +188,175 @@
           <!-- card  -->
           <% properties.forEach(p => { %>
             <a href="/property/<%= p.id %>" class="property-card">
-          <div class="featured-stays-card">
-            <div class="featured-stays-card_img--wrp">
+              <div class="featured-stays-card">
+                <div class="featured-stays-card_img--wrp">
                   <img src="<%= p.image_url %>" class="featured-stays-card_img" alt="">
-            </div>
-            <div class="featured-stays-card_info">
+                </div>
+                <div class="featured-stays-card_info">
                   <h3 class="featured-stays-card_title"><%= p.title %></h3>
-              <div class="featured-stays-card_location">
-                <i class="fa-solid fa-location-dot"></i>
+                  <div class="featured-stays-card_location">
+                    <i class="fa-solid fa-location-dot"></i>
                     <%= p.region %>, <%= p.city %>
-              </div>
-              <ul class="featured-stays-card_amenities">
+                  </div>
+                  <ul class="featured-stays-card_amenities">
                     <% if (p.amenities && p.amenities.length > 0) { %>
                       <% p.amenities.forEach(a => { %>
                         <li><%= a %></li>
                         <% }) %>
                         <% } %>
-              </ul>
+                      </ul>
 
                       <div class="featured-stays-card_price">
                         <b>$<%= p.price_per_night %></b><span>/per night</span>
                       </div>
-            </div>
-          </div>
-           </a>
+                    </div>
+                  </div>
+                </a>
                 <% }) %>
-        </div>
+              </div>
               <a href="/properties" class="btn btn-red">more stays</a>
-      </section>
-    </div>
+            </section>
+          </div>
 
-    <!-- WHY CHOOSE SECTION -->
-    <div class="container">
-      <section id="why-choose" class="section">
-        <h2 class="section-title">Why Choose VillageAirBNB</h2>
-        <p class="section-info">More than just accommodation a cultural journey</p>
-        <div class="section-content-grid why-choose">
-          <!-- card 1 -->
-          <div class="why-choose-card">
-            <h3 class="why-choose-card_title">
-              <i class="fa-solid fa-house" aria-hidden="true"></i>
-              Authentic Homes</h3>
-              <p class="why-choose-card_info">Stay in real village homes with local families who are passionate about sharing their culture and traditions.</p>
-            </div>
-
-            <!-- card 2 -->
-            <div class="why-choose-card">
-              <h3 class="why-choose-card_title">
-                <i class="fa-solid fa-utensils" aria-hidden="true"></i>
-                Traditional cuisine</h3>
-                <p class="why-choose-card_info">Experience home-cooked Uzbek meals prepared with love using fresh, local
-                  ingredients from village gardens.</p>
-                </div>
-
-                <!-- card 3 -->
+          <!-- WHY CHOOSE SECTION -->
+          <div class="container">
+            <section id="why-choose" class="section">
+              <h2 class="section-title">Why Choose VillageAirBNB</h2>
+              <p class="section-info">More than just accommodation a cultural journey</p>
+              <div class="section-content-grid why-choose">
+                <!-- card 1 -->
                 <div class="why-choose-card">
                   <h3 class="why-choose-card_title">
-                    <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
-                    Local Expertise</h3>
-                    <p class="why-choose-card_info">Your hosts know the hidden gems - hiking trails, secret viewpoints, and
-                      authentic experiences tourists never
-                      find.</p>
-                    </div>
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    Authentic Homes</h3>
+                    <p class="why-choose-card_info">Stay in real village homes with local families who are passionate about sharing their culture and traditions.</p>
+                  </div>
 
-                    <!-- card 4 -->
-                    <div class="why-choose-card">
-                      <h3 class="why-choose-card_title">
-                        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-                        Secure Payments</h3>
-                        <p class="why-choose-card_info">Book with onfidence using Visa or Mastercard through our secure PayPal
-                          payment system.</p>
-                        </div>
+                  <!-- card 2 -->
+                  <div class="why-choose-card">
+                    <h3 class="why-choose-card_title">
+                      <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+                      Traditional cuisine</h3>
+                      <p class="why-choose-card_info">Experience home-cooked Uzbek meals prepared with love using fresh, local
+                        ingredients from village gardens.</p>
+                      </div>
 
-                        <!-- card 5 -->
-                        <div class="why-choose-card">
-                          <h3 class="why-choose-card_title">
-                            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                            Verified Hosts</h3>
-                            <p class="why-choose-card_info">All our village hosts are personally verified by our Fergana-based team to ensure quality and safety..</p>
+                      <!-- card 3 -->
+                      <div class="why-choose-card">
+                        <h3 class="why-choose-card_title">
+                          <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                          Local Expertise</h3>
+                          <p class="why-choose-card_info">Your hosts know the hidden gems - hiking trails, secret viewpoints, and
+                            authentic experiences tourists never
+                            find.</p>
                           </div>
 
-                          <!-- card 6 -->
+                          <!-- card 4 -->
                           <div class="why-choose-card">
                             <h3 class="why-choose-card_title">
-                              <i class="fa-solid fa-headset" aria-hidden="true"></i>
-                              24/7 Support</h3>
-                              <p class="why-choose-card_info">Our local agents are always available to help make your village stay comfortable and memorable.</p>
+                              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                              Secure Payments</h3>
+                              <p class="why-choose-card_info">Book with onfidence using Visa or Mastercard through our secure PayPal
+                                payment system.</p>
+                              </div>
+
+                              <!-- card 5 -->
+                              <div class="why-choose-card">
+                                <h3 class="why-choose-card_title">
+                                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                                  Verified Hosts</h3>
+                                  <p class="why-choose-card_info">All our village hosts are personally verified by our Fergana-based team to ensure quality and safety..</p>
+                                </div>
+
+                                <!-- card 6 -->
+                                <div class="why-choose-card">
+                                  <h3 class="why-choose-card_title">
+                                    <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                                    24/7 Support</h3>
+                                    <p class="why-choose-card_info">Our local agents are always available to help make your village stay comfortable and memorable.</p>
+                                  </div>
+
+                                </div>
+                              </section>
                             </div>
 
-                          </div>
-                        </section>
-                      </div>
+                            <!-- EQUIPMENT SECTION -->
+                            <div class="container">
+                              <section id="equipment" class="section equipment-section">
+                                <h2 class="section-title">Camping & hiking equipment</h2>
+                                <p class="section-info">Rent everything you need for your outdoor adventures</p>
+                                <div class="section-content-grid equipment-grid">
+                                  <!-- card 1 -->
+                                  <div class="equipment-card">
+                                    <img src="./img/tent.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
+                                    <div class="equipment-card_title">Tents</div>
+                                    <p class="equipment-card_info">2-6 person tents</p>
+                                  </div>
 
-                      <!-- EQUIPMENT SECTION -->
-                      <div class="container">
-                        <section id="equipment" class="section equipment-section">
-                          <h2 class="section-title">Camping & hiking equipment</h2>
-                          <p class="section-info">Rent everything you need for your outdoor adventures</p>
-                          <div class="section-content-grid equipment-grid">
-                            <!-- card 1 -->
-                            <div class="equipment-card">
-                              <img src="./img/tent.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
-                              <div class="equipment-card_title">Tents</div>
-                              <p class="equipment-card_info">2-6 person tents</p>
+                                  <!-- card 2 -->
+                                  <div class="equipment-card">
+                                    <img src="./img/sleeping-bags.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
+                                    <div class="equipment-card_title">Sleeping Bags</div>
+                                    <p class="equipment-card_info">All-season options</p>
+                                  </div>
+
+                                  <!-- card 3 -->
+                                  <div class="equipment-card">
+                                    <img src="./img/climbing-gear.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
+                                    <div class="equipment-card_title">Climbing Gear</div>
+                                    <p class="equipment-card_info">Ropes & equipment</p>
+                                  </div>
+
+                                  <!-- card 4 -->
+                                  <div class="equipment-card">
+                                    <img src="./img/hand-lamp.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
+                                    <div class="equipment-card_title">Lighting</div>
+                                    <p class="equipment-card_info">Headlamps & lanterns</p>
+                                  </div>
+
+                                  <!-- card 5 -->
+                                  <div class="equipment-card">
+                                    <img src="./img/cooking-equipment.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
+                                    <div class="equipment-card_title">Cooking Equipment</div>
+                                    <p class="equipment-card_info">Stoves & utensils</p>
+                                  </div>
+
+                                  <!-- card 6 -->
+                                  <div class="equipment-card">
+                                    <img src="./img/hiking-gear.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
+                                    <div class="equipment-card_title">Hiking Gear</div>
+                                    <p class="equipment-card_info">Boots & poles</p>
+                                  </div>
+                                </div>
+                                <a href="#" class="btn btn-red btn-submit">rent equipment</a>
+                              </section>
                             </div>
 
-                            <!-- card 2 -->
-                            <div class="equipment-card">
-                              <img src="./img/sleeping-bags.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
-                              <div class="equipment-card_title">Sleeping Bags</div>
-                              <p class="equipment-card_info">All-season options</p>
-                            </div>
-
-                            <!-- card 3 -->
-                            <div class="equipment-card">
-                              <img src="./img/climbing-gear.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
-                              <div class="equipment-card_title">Climbing Gear</div>
-                              <p class="equipment-card_info">Ropes & equipment</p>
-                            </div>
-
-                            <!-- card 4 -->
-                            <div class="equipment-card">
-                              <img src="./img/hand-lamp.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
-                              <div class="equipment-card_title">Lighting</div>
-                              <p class="equipment-card_info">Headlamps & lanterns</p>
-                            </div>
-
-                            <!-- card 5 -->
-                            <div class="equipment-card">
-                              <img src="./img/cooking-equipment.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
-                              <div class="equipment-card_title">Cooking Equipment</div>
-                              <p class="equipment-card_info">Stoves & utensils</p>
-                            </div>
-
-                            <!-- card 6 -->
-                            <div class="equipment-card">
-                              <img src="./img/hiking-gear.png" alt="equipment-img" class="equipment-card_img" width="300" height="200">
-                              <div class="equipment-card_title">Hiking Gear</div>
-                              <p class="equipment-card_info">Boots & poles</p>
-                            </div>
-                          </div>
-                          <a href="#" class="btn btn-red btn-submit">rent equipment</a>
-                        </section>
-                      </div>
-
-                      <!-- TESTIMONIAL SECTION -->
-                      <div class="container">
-                        <section class="section testimonial-section">
-                          <h2 class="section-title">What our guests say</h2>
-                          <p class="section-info">Real experiences from travellers who discovered village life</p>
-                          <div class="section-content-flex testimonials">
-                            <!-- card 1 -->
-                            <div class="testimonial-card">
-                              <div class="testimonial-card_info-wrp">
+                            <!-- TESTIMONIAL SECTION -->
+                            <div class="container">
+                              <section class="section testimonial-section">
+                                <h2 class="section-title">What our guests say</h2>
+                                <p class="section-info">Real experiences from travellers who discovered village life</p>
+                                <div class="section-content-flex testimonials">
+                                  <!-- card 1 -->
+                                  <div class="testimonial-card">
+                                    <div class="testimonial-card_info-wrp">
                                       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjDEESgQCTF0_IvMrOa5YXmTSV9pK1JO7ZCQ&s" alt="profile-img" class="testimonial-card_avatar" width="76" height="76">
-                                <div class="testimonial-card_info">
+                                      <div class="testimonial-card_info">
                                         <h3 class="testimonial-card_name">Jake Esh</h3>
                                         <p class="testimonial-card_address"> Pennsylvania, USA</p>
-                                </div>
-                              </div>
-                              <div class="tetimonial-card_star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                              </div>
-                              <p class="testimonial-card_comment">"An absolutely unforgettable experience! Living with a local family in the Fergana Valley gave me insights into Uzbek culture that no hotel could ever provide. The hospitality was incredible."</p>
-                              <button class="read-more" onclick="toggleReview(this)" >Read more</button>
-                            </div>
+                                      </div>
+                                    </div>
+                                    <div class="tetimonial-card_star">
+                                      <i class="fa-solid fa-star"></i>
+                                      <i class="fa-solid fa-star"></i>
+                                      <i class="fa-solid fa-star"></i>
+                                      <i class="fa-solid fa-star"></i>
+                                      <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-card_comment">"An absolutely unforgettable experience! Living with a local family in the Fergana Valley gave me insights into Uzbek culture that no hotel could ever provide. The hospitality was incredible."</p>
+                                    <button class="read-more" onclick="toggleReview(this)" >Read more</button>
+                                  </div>
 
                                   <!-- card 2 -->
                                   <div class="testimonial-card">
@@ -397,72 +397,72 @@
                                     <p class="testimonial-card_comment">"An experience I will never forget! Strolling through the enchanting streets and timeless madrasahs of Bukhara offered a glimpse into centuries of Uzbek history and culture that no book could convey. The warmth and hospitality of the local people made every visit truly magical."</p>
                                     <button class="read-more" onclick="toggleReview(this)" >Read more</button>
                                   </div>
-                          </div>
-                          <a href="#" class="btn btn-red btn-submit">see more reviews</a>
-                        </section>
-                      </div>
+                                </div>
+                                <a href="#" class="btn btn-red btn-submit">see more reviews</a>
+                              </section>
+                            </div>
 
-                      <!-- CTA SECTION -->
-                      <div class="container">
-                        <section class="section cta-section">
-                          <h2 class="section-title">Ready to experience village life?</h2>
-                          <p class="section-info">Join thousands of travellers who have discovered the authentic heart of Uzbekistan</p>
-                          <div class="cta-btn--wrapper">
-                            <a class="btn btn-cta find-homestay" href="#">find your stay</a>
-                            <a class="btn btn-cta" href="/list-room">list your room</a>
-                          </div>
-                        </section>
-                      </div>
-                    </main>
+                            <!-- CTA SECTION -->
+                            <div class="container">
+                              <section class="section cta-section">
+                                <h2 class="section-title">Ready to experience village life?</h2>
+                                <p class="section-info">Join thousands of travellers who have discovered the authentic heart of Uzbekistan</p>
+                                <div class="cta-btn--wrapper">
+                                  <a class="btn btn-cta find-homestay" href="#">find your stay</a>
+                                  <a class="btn btn-cta" href="/list-room">list your room</a>
+                                </div>
+                              </section>
+                            </div>
+                          </main>
 
-                    <!-- FOOTER -->
-                    <footer class="footer">
-                      <div class="footer__container container">
-                        <div class="footer-logo-info">
+                          <!-- FOOTER -->
+                          <footer class="footer">
+                            <div class="footer__container container">
+                              <div class="footer-logo-info">
                                 <a href="/" class="footer_logo logo">
-                            <svg class="logo_icon icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                            </svg>
-                            <span>VillageAirBNB</span>
-                          </a>
-                          <p class="footer_info">Connecting travellers with authentic Uzbek village experiences since 2025</p>
-                        </div>
+                                  <svg class="logo_icon icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                  </svg>
+                                  <span>VillageAirBNB</span>
+                                </a>
+                                <p class="footer_info">Connecting travellers with authentic Uzbek village experiences since 2025</p>
+                              </div>
 
 
-                        <div class="footer-list--wrapper">
-                          <!-- footer list 1 -->
-                          <ul class="footer__list list-footer">
-                            <li><h3 class="footer-list__title">Company</h3></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">About us</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">how it works</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">careers</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">press</a></li>
-                          </ul>
+                              <div class="footer-list--wrapper">
+                                <!-- footer list 1 -->
+                                <ul class="footer__list list-footer">
+                                  <li><h3 class="footer-list__title">Company</h3></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">About us</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">how it works</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">careers</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">press</a></li>
+                                </ul>
 
-                          <!-- footer list 2 -->
-                          <ul class="footer__list list-footer">
-                            <li><h3 class="footer-list__title">support</h3></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">help center</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">safety guidelines</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">cancellation policy</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">contact us</a></li>
-                          </ul>
+                                <!-- footer list 2 -->
+                                <ul class="footer__list list-footer">
+                                  <li><h3 class="footer-list__title">support</h3></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">help center</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">safety guidelines</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">cancellation policy</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">contact us</a></li>
+                                </ul>
 
-                          <!-- footer list 3 -->
-                          <ul class="footer__list list-footer">
-                            <li><h3 class="footer-list__title">hosting</h3></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">become a host</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">host resources</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">host community</a></li>
-                            <li class="list-footer__item"><a class="list-footer__link" href="#">equipment rental</a></li>
-                          </ul>
-                        </div>
-                      </div>
+                                <!-- footer list 3 -->
+                                <ul class="footer__list list-footer">
+                                  <li><h3 class="footer-list__title">hosting</h3></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">become a host</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">host resources</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">host community</a></li>
+                                  <li class="list-footer__item"><a class="list-footer__link" href="#">equipment rental</a></li>
+                                </ul>
+                              </div>
+                            </div>
 
-                      <div class="container footer__container-bottom">
-                        <p>© 2025 VillageAirBnB. All rights reserved. | Managed by Fergana Tourism Company</p>
-                      </div>
-                    </footer>
+                            <div class="container footer__container-bottom">
+                              <p>© 2025 VillageAirBnB. All rights reserved. | Managed by Fergana Tourism Company</p>
+                            </div>
+                          </footer>
 
 
                           <!-- MODAL -->
@@ -535,7 +535,7 @@
                             </form>
                           </section>
 
-                    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                    <script src="js/main.js"></script>
-                  </body>
-                  </html>
+                          <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                          <script src="js/main.js"></script>
+                        </body>
+                        </html>
