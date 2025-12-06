@@ -9,7 +9,9 @@ require("dotenv").config();
 
 const app = express();
 const db = require("./models/db");
-
+const dayjs = require("dayjs");
+const relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 // Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -64,6 +66,8 @@ const upload = multer({
 
 // ROUTES (GET)
 // HOME PAGE
+
+
 app.get("/", async (req, res) => {
   try {
     const result = await db.query(`
@@ -87,12 +91,18 @@ app.get("/", async (req, res) => {
       LIMIT 3;
     `);
 
-    res.render("index", { properties: result.rows, user: req.session.user });
+    const properties = result.rows.map(p => ({
+      ...p,
+      relative_date: dayjs(p.created_at).fromNow()
+    }));
+
+    res.render("index", { properties, user: req.session.user });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
   }
 });
+
 
 // ALL PROPERTIES
 app.get("/properties", async (req, res) => {
@@ -117,7 +127,12 @@ app.get("/properties", async (req, res) => {
       ORDER BY p.id DESC;
     `);
 
-    res.render("properties", { properties: result.rows, user: req.session.user });
+        const properties = result.rows.map(p => ({
+  ...p,
+  relative_date: dayjs(p.created_at).fromNow()
+}));
+
+res.render("properties", { properties, user: req.session.user });
   } catch (err) {
     console.error("DB ERROR:", err);
     res.status(500).send("Server error");

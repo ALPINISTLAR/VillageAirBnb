@@ -4,7 +4,7 @@
   --red-75: rgb(202, 0, 93, 0.75);
   --blue: #2563EB;
   --success-color: #16a34a;
-   --error-color: #e74c3c;
+  --error-color: #e74c3c;
   --blue-70: rgb(37, 99, 235, 0.7);
   --gold: #EFB31F;
   --red-50: rgb(202, 0, 93, 0.5);
@@ -16,7 +16,7 @@
   --white-60: rgb(255, 255, 255, 0.6);
   --light-bg: #f9f9f9;
   --card-bg: rgba(217, 217, 217, 0.3);
-  --transition: all 0.3s ease;
+  --transition: all 0.4s ease;
   --gradient: linear-gradient(135deg, #EFB31F 0%, #6D635F 100%);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   --border-color: #ddd;
@@ -47,9 +47,9 @@ h1,h2,h3,h4,p{
   margin: 0;
 }
 /* *:focus{
-  outline: 1px solid var(--red);
-  outline-offset: 1px;
-  border-radius: 0.5rem;
+outline: 1px solid var(--red);
+outline-offset: 1px;
+border-radius: 0.5rem;
 } */
 /* ----------------- */
 /* ===== body ====== */
@@ -171,7 +171,7 @@ button{
 /* ===================== */
 /* HEADER - HERO SECTION*/
 .header-hero-wrapper {
-background-image: url(/img/hero-bg.webp);
+  background-image: url(/img/hero-bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -265,6 +265,8 @@ background-image: url(/img/hero-bg.webp);
   width: 100%;
   height: 100%
 }
+
+
 /* USER SECTION */
 .user-section {
   display: flex;
@@ -424,7 +426,7 @@ background-image: url(/img/hero-bg.webp);
   top: 0;
 }
 .banner-navigation .sitenav__item {
-    display: flex;
+  display: flex;
   justify-content: center;
   width: 100%;
   background-color: var(--primary-color);
@@ -471,6 +473,9 @@ background-image: url(/img/hero-bg.webp);
 .section {
   padding: 5rem 0;
 }
+.padding{
+  padding-top: 7.725rem;
+}
 .section-title {
   font-size: 3rem;
   font-weight: 500;
@@ -485,7 +490,7 @@ background-image: url(/img/hero-bg.webp);
 }
 .section-content-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
 }
@@ -536,8 +541,7 @@ background-image: url(/img/hero-bg.webp);
   margin-bottom: 2rem;
 }
 .featured-stays-card {
-  max-width: 21.875rem;
-  width: 100%;
+  width: 21.875rem;
   border-radius: 0.6rem;
   overflow: hidden;
   background-color: var(--white);
@@ -615,7 +619,9 @@ background-image: url(/img/hero-bg.webp);
   background-color: var(--text-color-secondary);
 }
 .featured-stays-card_price{
+  color: var(--text-color-secondary);
   margin-top: auto;
+  margin-bottom: 0.5rem;
 }
 .featured-stays-card_price b {
   color: var(--blue);
@@ -624,6 +630,11 @@ background-image: url(/img/hero-bg.webp);
 }
 .featured-stays-card_price span{
   text-transform: lowercase;
+}
+.featured-stays-card .date-added{
+  text-transform: capitalize;
+  font-size: 0.875rem;
+  color: var(--text-color-secondary);
 }
 /* ==|| WHY CHOOSE SECTION ||== */
 .why-choose-card {
@@ -875,7 +886,7 @@ background-image: url(/img/hero-bg.webp);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .listing-form_container input:focus,select:focus{
-    outline: none;
+  outline: none;
   border-color: var(--red);
   box-shadow: 0 0 0 1px var(--red-50);
 }
@@ -1299,11 +1310,14 @@ background-image: url(/img/hero-bg.webp);
 .amenity-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.625rem;
   padding: 0.75rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--blue-70);
   border-radius: 0.5rem;
   font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .amenity-item i {
