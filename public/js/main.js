@@ -1,5 +1,6 @@
 // Banner Navigation
 const BannerNavigation = document.querySelector('.banner-navigation');
+const HowItWorks = document.getElementById('how-it-works');
 
 if (BannerNavigation) {
   const offset = BannerNavigation.offsetTop;
@@ -7,8 +8,10 @@ if (BannerNavigation) {
   window.addEventListener('scroll', () => {
     if (window.scrollY >= offset) {
       BannerNavigation.classList.add('fixed');
+      HowItWorks.classList.add('padding')
     } else {
       BannerNavigation.classList.remove('fixed');
+      HowItWorks.classList.remove('padding')
     }
   });
 }
