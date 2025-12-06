@@ -57,3 +57,58 @@ amenityButtons.forEach(button => {
         checkbox.checked = !checkbox.checked;
     });
 });
+
+//  FORM SUBMIT HANDLER
+document.getElementById('listingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    console.log('Form submitted!');
+    console.log('uploadedImages count:', uploadedImages.length);
+
+    const formData = new FormData(this);
+
+    formData.delete('images');
+
+    uploadedImages.forEach((image, index) => {
+        if (image.file) {
+            formData.append('images', image.file);
+            console.log(`Image ${index + 1}:`, image.file.name);
+        }
+    });
+
+    const submitBtn = document.getElementById('submitButton');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Uploading...';
+
+    fetch('/api/properties', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log('Response status:', response.status);
+
+        if (response.ok) {
+            return response.json().catch(() => {
+                window.location.href = '/?success=true';
+            });
+        } else {
+            return response.text().then(text => {
+                throw new Error(text || 'Server error');
+            });
+        }
+    })
+    .then(data => {
+        if (data) {
+            console.log('Success:', data);
+        }
+        window.location.href = '/?success=true';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('something went wrong: ' + error.message);
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    });
+});
