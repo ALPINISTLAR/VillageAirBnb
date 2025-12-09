@@ -171,6 +171,7 @@ button{
 /* ===================== */
 /* HEADER - HERO SECTION*/
 .header-hero-wrapper {
+  background-color: #6b7280;
   background-image: url(/img/hero-bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
