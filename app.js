@@ -7,6 +7,9 @@ const multer = require("multer");
 const fs = require("fs");
 require("dotenv").config();
 
+const FormData = require('form-data');
+const axios = require('axios');
+
 const app = express();
 const db = require("./models/db");
 const dayjs = require("dayjs");
@@ -33,15 +36,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// MULTER CONFIGURATION
-const uploadsDir = path.join(__dirname, 'public', 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
+// MULTER CONFIGURATION (Memory storage for ImgBB)
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, uploadsDir);
+    cb(null, '/tmp'); // Temporary folder
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -64,10 +62,33 @@ const upload = multer({
   }
 });
 
+// ImgBB Upload Function
+async function uploadToImgBB(filePath) {
+  try {
+    const formData = new FormData();
+    formData.append('image', fs.createReadStream(filePath));
+
+    const response = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${process.env.IMGBB_API_KEY}`,
+      formData,
+      {
+        headers: formData.getHeaders()
+      }
+    );
+
+    if (response.data && response.data.data) {
+      return response.data.data.url;
+    }
+
+    throw new Error('ImgBB upload failed');
+  } catch (error) {
+    console.error('ImgBB Error:', error.message);
+    throw error;
+  }
+}
+
 // ROUTES (GET)
 // HOME PAGE
-
-
 app.get("/", async (req, res) => {
   try {
     const result = await db.query(`
@@ -102,7 +123,6 @@ app.get("/", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
-
 
 // ALL PROPERTIES
 app.get("/properties", async (req, res) => {
@@ -198,10 +218,6 @@ app.get("/profile", (req, res) => {
 // PROPERTY MANAGEMENT (POST)
 // CREATE PROPERTY
 app.post('/api/properties', upload.array('images', 10), async (req, res) => {
-  console.log('=== FORM SUBMITTED ===');
-  console.log('User:', req.session.user);
-  console.log('Body:', req.body);
-  console.log('Files:', req.files);
 
   try {
     if (!req.session.user) {
@@ -235,23 +251,38 @@ app.post('/api/properties', upload.array('images', 10), async (req, res) => {
     `, [userId, propertyName, region, city, address, pricePerNight, maxGuests, bedrooms, bathrooms, description]);
 
     const propertyId = propertyResult.rows[0].id;
-    console.log('Property created with ID:', propertyId);
 
-    // save images
-    if (req.files && req.files.length > 0) {
-      console.log('Saving images...');
-      for (let i = 0; i < req.files.length; i++) {
-        const imageUrl = '/uploads/' + req.files[i].filename;
-        await db.query(`
-          INSERT INTO property_images (property_id, url, position)
-          VALUES ($1, $2, $3)
-        `, [propertyId, imageUrl, i]);
-      }
+
+// save images to ImgBB
+if (req.files && req.files.length > 0) {
+  console.log('Uploading images to ImgBB...');
+
+  for (let i = 0; i < req.files.length; i++) {
+    const file = req.files[i];
+    const localPath = file.path;
+
+    try {
+      // Upload to ImgBB
+      const imgbbUrl = await uploadToImgBB(localPath);
+      console.log(`Image ${i + 1} uploaded to ImgBB:`, imgbbUrl);
+
+      // Save to database
+      await db.query(`
+        INSERT INTO property_images (property_id, url, position)
+        VALUES ($1, $2, $3)
+      `, [propertyId, imgbbUrl, i]);
+
+      // Delete local file (no longer needed)
+      fs.unlinkSync(localPath);
+
+    } catch (error) {
+      console.error(`Failed to upload image ${i + 1}:`, error.message);
     }
+  }
+}
 
     // save amenities
     if (amenities) {
-      console.log('Saving amenities:', amenities);
       const amenitiesArray = Array.isArray(amenities) ? amenities : [amenities];
 
       for (let amenityName of amenitiesArray) {
@@ -279,7 +310,6 @@ app.post('/api/properties', upload.array('images', 10), async (req, res) => {
       }
     }
 
-    console.log('Property created successfully!');
     res.redirect('/?success=true');
 
   } catch (err) {
